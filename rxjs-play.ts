@@ -44,15 +44,15 @@ import {
 //
 // console.log('just before subscribe');
 //
-
+//
 // observable.subscribe({
 //     next(x) { console.log('got value ' + x); },
 //     error(err) { console.error('something wrong occurred: ' + err); },
 //     complete() { console.log('done'); }
 // });
-
+//
 // console.log('just after subscribe');
-
+//
 
 // nicer way !
 
@@ -104,9 +104,9 @@ import {
 //         subscription.unsubscribe();
 //     }
 // });
+//
 
-
-// [NEXT] Subject, BehaviourSubject ReplaySubject - common in the source code
+// [NEXT] Subject - common in the source code
 
 // const subject = new Subject<string>();
 //
@@ -131,7 +131,7 @@ import {
 
 // [NEXT] Behaviour subject - It stores the latest value emitted to its consumers, and whenever a new Observer subscribes, it will immediately receive the "current value" from the BehaviorSubject
 
-//
+
 // const behaviourSubject = new BehaviorSubject<number>(0);
 //
 // behaviourSubject.subscribe(x => {
@@ -142,10 +142,10 @@ import {
 // behaviourSubject.next(1); // A receives | 1 | as latest value
 // behaviourSubject.next(2); // A receives | 2 | as latest value
 //
-// /*
-// *  below is new subscriber, only receives latest value of 2
-// * */
-//
+// // /*
+// // *  below is new subscriber, only receives latest value of 2
+// // * */
+// //
 // behaviourSubject.subscribe(x => {
 //     console.log('-----------------');
 //     console.log('observer B : ' + x); // B receives | 2 | as latest value
@@ -178,7 +178,7 @@ import {
 // });
 //
 // subject.next(Math.random()); // both observers get emitted values
-
+//
 
 
 // [NEXT] ConcatMap - order IS preserved
@@ -188,9 +188,9 @@ import {
 // const series2$ = of('x', 'y');
 //
 // const result$ = concat(series1$, series2$);
-
-// of operator emits 2 values, then completes, upon completion concat subscribes to series2$
-
+//
+// // of operator emits 2 values, then completes, upon completion concat subscribes to series2$
+//
 // result$.subscribe(console.log);
 //
 // console.log('------a----b---|-->');
@@ -244,22 +244,22 @@ import {
 /*
 * Hot vs Cold Observables
 * */
+//
+// const cold = of( Math.random() );
+//
+// const hot  = cold.pipe( share() );
+//
+// hot.subscribe(res => console.log('1: ',res));
+// hot.subscribe(res => console.log('2: ',res));
+//
+// const source = from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+//
+// const modified = source.pipe(
+//     map(n => Math.pow(n, 2)),
+//     scan((acc, val) => acc + val),
+//     filter(v => v > 10),
+//     take(3)
+// );
 
-const cold = of( Math.random() );
 
-const hot  = cold.pipe( share() );
-
-hot.subscribe(res => console.log('1: ',res));
-hot.subscribe(res => console.log('2: ',res));
-
-const source = from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-const modified = source.pipe(
-    map(n => Math.pow(n, 2)),
-    scan((acc, val) => acc + val),
-    filter(v => v > 10),
-    take(3)
-);
-
-
-modified.subscribe(console.log);
+// modified.subscribe(console.log);

@@ -1,6 +1,7 @@
-## Run ts file examples with > 
+## Run ts file example with: 
 
 ```bash
+> npm install
 > ts-node rxjs-play.ts
 ```
 
@@ -16,21 +17,32 @@ Observables are cancellable, i.e once they are executed, they can be terminated,
 
 Observables are also termed ‘lazy’, they do not activate unless they are subscribed to by a consumer/observer. Lazy execution allows you to chain operators together e.g map, tap, filter. Another facet of this concept is the ‘hot’ / ‘cold’ observable. Lazy Observables are considered cold until they are activated.
 
+## Common Gotacha's!
+
+* not calling subscribe on the observable, the source remains cold - no output!
+* use tear down logic to close streams when appropriate, use this lib for that [Until-destroy](https://github.com/ngneat/until-destroy)
+* be aware of when you are returning an observable, handle the stream appropriately
+* if the stream is inactive, consider whether the observable is 'cold' and needs a consumer 
+
+
+
 ### Composed of 4 core behaviours: 
  1 .Creation ‘new Observable’
  2. subscriptions
  3. executing or pushing
  4. disposing, or destroying
 
-[MIT] [Observer pattern](https://medium.com/datadriveninvestor/design-patterns-a-quick-guide-to-observer-pattern-d0622145d6c2)
-[MIT] [Functional Reactive Programming in Angular](https://blog.angular-university.io/functional-reactive-programming-for-angular-2-developers-rxjs-and-observables/)
+[Observer pattern](https://medium.com/datadriveninvestor/design-patterns-a-quick-guide-to-observer-pattern-d0622145d6c2)
+
+[Functional Reactive Programming in Angular](https://blog.angular-university.io/functional-reactive-programming-for-angular-2-developers-rxjs-and-observables/)
+
 
 
 ## How does it help?
 
 It helps by allowing us to build programmes in terms of streams, rather than holding application state variables in the code - which is a general source of errors. To be clear the application will have state but it will be stored on streams, in the DOM and not on application code itself. This in itself makes Functional Reactive Programming a paradigm of its own.
 
-e.g behaviour subject
+
 
 ```$xslt
 import { Observable } from 'rxjs';
@@ -48,7 +60,7 @@ obs.subscribe(value => console.log("===> Stream 2 received ==> " + value));
 ```
 
 ### 4 main traits of observables -  creation, execution(subscription), destruction
-The Subscription and subscriber represents the ongoing execution.
+The Subscription and subscriber represent the ongoing execution.
 
 ```
 const subscriber = (subscriber) => {
