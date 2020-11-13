@@ -1,4 +1,8 @@
-## Run ts file examples with > ts-node rxjs-play.ts
+## Run ts file examples with > 
+
+```bash
+> ts-node rxjs-play.ts
+```
 
 ### What is an Observable?
 
@@ -13,10 +17,10 @@ Observables are cancellable, i.e once they are executed, they can be terminated,
 Observables are also termed ‘lazy’, they do not activate unless they are subscribed to by a consumer/observer. Lazy execution allows you to chain operators together e.g map, tap, filter. Another facet of this concept is the ‘hot’ / ‘cold’ observable. Lazy Observables are considered cold until they are activated.
 
 ### Composed of 4 core behaviours: 
- 1 .Creation ‘ new Observable’
-- subscriptions
-- executing or pushing
-- disposing, or destroying
+ 1 .Creation ‘new Observable’
+ 2. subscriptions
+ 3. executing or pushing
+ 4. disposing, or destroying
 
 [MIT] [Observer pattern](https://medium.com/datadriveninvestor/design-patterns-a-quick-guide-to-observer-pattern-d0622145d6c2)
 [MIT] [Functional Reactive Programming in Angular](https://blog.angular-university.io/functional-reactive-programming-for-angular-2-developers-rxjs-and-observables/)
