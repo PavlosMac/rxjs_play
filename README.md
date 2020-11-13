@@ -12,7 +12,7 @@ The ‘Observer’ pattern is a software design pattern in which a subject emits
 
 The Observable handles a stream of events where the callback is called for each event. Promises only handle one event. Promises only work with ‘single’ async value, chained promises leading to the infamous callback hell.
 
-Observables are cancellable, i.e once they are executed, they can be terminated, whereas a Promises always has to resolve or be rejected.
+Observables are cancellable, i.e once they are executed, they can be terminated, whereas a Promise always has to resolve or be rejected.
 
 Observables are also termed ‘lazy’, they do not activate unless they are subscribed to by a consumer/observer. Lazy execution allows you to chain operators together e.g map, tap, filter. Another facet of this concept is the ‘hot’ / ‘cold’ observable. Lazy Observables are considered cold until they are activated.
 
@@ -85,7 +85,7 @@ subscription = observable1.subscribe(res => {
 });
 ```
 
-### Subject, BehaviourSubject ReplaySubject - common in the source code
+### Subject - common in the source code
 
 ```
 const subject = new Subject<string>();
@@ -108,7 +108,7 @@ subject.subscribe(res => console.log(res));
 emitSubjects();
 ```
 
-### Behaviour subject - It stores the latest value emitted to its consumers
+### Behaviour subject - It stores the latest value and emits this to its consumers
 And whenever a new Observer subscribes, it will immediately receive the "current value" from the BehaviorSubject.
 
 ```
@@ -199,7 +199,7 @@ console.log('---x--a--y--b-z--c--|-->');
 
 ```
 
-### SwitchMap - pseudo code - the cancel observable operator
+### SwitchMap - pseudo code - the cancel operator
 
 ```
 const searchText$: Observable<string> =
